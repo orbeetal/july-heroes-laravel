@@ -9,6 +9,22 @@
         <div
             class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid gap-4 md:gap-6 lg:gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
         >
+            <x-dashboard-item href="/dashboard/martyrs">
+                Martyrs | শহীদ
+            </x-dashboard-item>
+
+            <x-dashboard-item href="/dashboard/injured">
+                Injured | আহত
+            </x-dashboard-item>
+
+            <x-dashboard-item href="/dashboard/murderers">
+                Murderers | হত্যাকারী
+            </x-dashboard-item>
+
+            <x-dashboard-item href="/dashboard/events">
+                Events
+            </x-dashboard-item>
+
             <x-dashboard-item href="/dashboard/users">
                 Admin Users
                 <x-slot name="icon">

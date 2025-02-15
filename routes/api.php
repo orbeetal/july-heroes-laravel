@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,9 @@ Route::prefix('v1')->group(function () {
             'endpoints' => $endpoints,
         ]);
     });
+
+    Route::get('/events', [EventController::class, 'index']);
+    Route::get('/events/{event}', [EventController::class, 'show']);
 
     Route::get('/settings', [SettingController::class, 'index']);
 });
