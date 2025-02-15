@@ -4,14 +4,12 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __("Martyr List") }}
             </h2>
-            @if(count($martyrs) < 18)
             <a
                 href="{{ route('dashboard.martyrs.create') }}"
                 class="px-4 py-1 border rounded-lg cursor-pointer border-brand-primary text-brand-primary bg-white hover:text-white hover:bg-brand-primary"
             >
                 New Martyr
             </a>
-            @endif
         </div>
     </x-slot>
 

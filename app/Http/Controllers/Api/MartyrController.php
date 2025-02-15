@@ -34,10 +34,10 @@ class MartyrController extends Controller
         }
 
         return response()->json([
-            'total'     => $total,
-            'skip'      => $skip,
-            'take'      => $take,
-            'martyrs'   => $total ? $martyrs : [],
+            'total' => $total,
+            'skip'  => $skip,
+            'take'  => $take,
+            'data'  => $total ? $martyrs : [],
         ]);
     }
 
@@ -58,10 +58,12 @@ class MartyrController extends Controller
             ])
             ->find($id);
 
-        $lang = $this->getLang();
-
-        $martyr->age = $this->localizedNumberInText($martyr->age) . ($lang == 'bn' ? " বছর" : " years");
-        $martyr->incident_date = $this->localizedDate($martyr->incident_date);
+        if($martyr) {
+            $lang = $this->getLang();
+ 
+            $martyr->age = $this->localizedNumberInText($martyr->age) . ($lang == 'bn' ? " বছর" : " years");
+            $martyr->incident_date = $this->localizedDate($martyr->incident_date);
+        }
 
         return response()->json($martyr);
     }
