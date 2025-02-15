@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\MartyrController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +17,8 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     Route::name('dashboard.')->group(function () {
         Route::get('/settings', [SettingController::class, 'form']);
         Route::put('/settings', [SettingController::class, 'save']);
+
+        Route::resource('/martyrs', MartyrController::class);
 
         Route::resource('/events', EventController::class);
         Route::resource('/users', UserController::class);
