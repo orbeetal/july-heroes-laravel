@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\InjuredController;
 use App\Http\Controllers\Api\MartyrController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
@@ -61,6 +62,9 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/martyrs', [MartyrController::class, 'index']);
     Route::get('/martyrs/{martyr}', [MartyrController::class, 'show']);
+
+    Route::get('/injured', [InjuredController::class, 'index']);
+    Route::get('/injured/{injured}', [InjuredController::class, 'show']);
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
