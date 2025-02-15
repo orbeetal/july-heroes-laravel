@@ -11,21 +11,26 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::query()
-            ->get([
+            ->select([
                 'id',
-                'title',
-                'body',
-            ]);
+                $this->localizedField('title'),
+                $this->localizedField('body'),
+            ])
+            ->get();
 
         return response()->json($events);
     }
 
-    public function show(Event $event)
+    public function show($id)
     {
-        return response()->json([
-            'id' => $event->id,
-            'title' => $event->title,
-            'body' => $event->body,
-        ]);
+        $event = Event::query()
+            ->select([
+                'id',
+                $this->localizedField('title'),
+                $this->localizedField('body'),
+            ])
+            ->find($id);
+
+        return response()->json($event);
     }
 }

@@ -22,8 +22,7 @@
                     <thead>
                         <tr class="*:px-3 *:py-2 bg-gray-200">
                             <th class="text-center">SL</th>
-                            <th class="text-left">Title</th>
-                            <th class="text-left">Body</th>
+                            <th class="text-left">Data</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -35,20 +34,40 @@
                             <td class="text-center">
                                 {{ $events->firstItem() + $loop->index }}
                             </td>
-                            <td class="text-left">
-                                {{ $event->title }}
-                            </td>
-                            <td class="text-left">
-                                <div class="line-clamp-2">
-                                    {!! $event->body !!}
+                            <td class="text-left *:line-clamp-1">
+                                <div>
+                                    <span class="text-gray-500">
+                                        Title (Bn):
+                                    </span>
+                                    {{ $event->title_bn }}
+                                </div>
+                                <div>
+                                    <span class="text-gray-500">
+                                        Body (Bn):
+                                    </span>
+                                    {{ $event->body_bn }}
+                                </div>
+                                <hr class="my-1" />
+                                <div>
+                                    <span class="text-gray-500">
+                                        Title (En):
+                                    </span>
+                                    {{ $event->title_en }}
+                                </div>
+                                <div>
+                                    <span class="text-gray-500">
+                                        Body (En):
+                                    </span>
+                                    {{ $event->body_en }}
                                 </div>
                             </td>
                             <td class="text-center">
                                 {{--
                                 <a
                                     href="{{ route('dashboard.events.show', $event->id) }}"
-                                    >Show</a
                                 >
+                                    Show
+                                </a>
                                 --}}
                                 <a
                                     class="px-4 text-sm py-1 rounded-lg bg-sky-500 text-white"

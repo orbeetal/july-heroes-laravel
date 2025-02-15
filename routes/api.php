@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
+Route::fallback(function (Request $request) {
+    return response()->json([
+        'message' => "Route not found: " . $request->path(),
+    ], 404);
+});
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -33,10 +39,17 @@ Route::prefix('v1')->group(function () {
             ) {
                 $formattedUri = preg_replace('/\{(\w+)\}/', ':$1', $route->uri);
 
+                $formattedUriWithDefault = preg_replace('/\{(\w+)\}/', '1', $route->uri);
+
                 $endpoints[] = [
-                    'api_url' => url($formattedUri),
                     'method' => $route->methods[0],
+                    "endpoint" => "/" . $formattedUri,
+                    'examples' => [
+                        "bn" => url($formattedUriWithDefault) . "?lang=bn",
+                        "en" => url($formattedUriWithDefault) . "?lang=en",
+                    ],
                 ];
+
             }
         }
 

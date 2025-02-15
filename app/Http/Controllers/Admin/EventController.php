@@ -86,8 +86,10 @@ class EventController extends Controller
     protected function getValidatedData($request, $id = '')
     {
         return $request->validate([
-            "title" => "required|string",
-            "body" => "required|string",
+            "title_bn" => "required|string",
+            "title_en" => "nullable|string",
+            "body_bn" => "required|string",
+            "body_en" => "nullable|string",
         ]);
     }
 }
