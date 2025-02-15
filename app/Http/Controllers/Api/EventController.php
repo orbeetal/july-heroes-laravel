@@ -14,7 +14,7 @@ class EventController extends Controller
             ->select([
                 'id',
                 $this->localizedField('title'),
-                $this->localizedField('body'),
+                $this->localizedField('description'),
             ])
             ->get();
 
@@ -27,7 +27,7 @@ class EventController extends Controller
             ->select([
                 'id',
                 $this->localizedField('title'),
-                $this->localizedField('body'),
+                $this->localizedField('description'),
             ])
             ->find($id);
 

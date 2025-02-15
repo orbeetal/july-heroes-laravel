@@ -35,35 +35,36 @@
         @enderror
     </div>
 
-    <!-- Body (Bn) -->
+    <!-- Description (Bn) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="body_bn" class="block text-sm font-medium text-gray-700">
-            Body (Bn)
+        <label for="description_bn" class="block text-sm font-medium text-gray-700">
+            Description (Bn)
             <i class="text-gray-500">[Default]</i>
         </label>
         <textarea
-            name="body_bn"
+            id="description_bn"
+            name="description_bn"
             class="w-full min-h-80 rounded-lg"
             required
-            >{{ $event->body_bn }}</textarea
+            >{{ $event->description_bn }}</textarea
         >
-        @error('body_bn')
+        @error('description_bn')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
     </div>
 
-    <!-- Body (En) -->
+    <!-- Description (En) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="body_en" class="block text-sm font-medium text-gray-700">
-            Body (En)
+        <label for="description_en" class="block text-sm font-medium text-gray-700">
+            Description (En)
         </label>
         <textarea
-            id="body_en"
-            name="body_en"
+            id="description_en"
+            name="description_en"
             class="w-full min-h-80 rounded-lg"
-            >{{ $event->body_en }}</textarea
+            >{{ $event->description_en }}</textarea
         >
-        @error('body_en')
+        @error('description_en')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
     </div>

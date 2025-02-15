@@ -88,8 +88,8 @@ class EventController extends Controller
         return $request->validate([
             "title_bn" => "required|string",
             "title_en" => "nullable|string",
-            "body_bn" => "required|string",
-            "body_en" => "nullable|string",
+            "description_bn" => "required|string",
+            "description_en" => "nullable|string",
         ]);
     }
 }

@@ -43,9 +43,9 @@
                                 </div>
                                 <div>
                                     <span class="text-gray-500">
-                                        Body (Bn):
+                                        Description (Bn):
                                     </span>
-                                    {{ $event->body_bn }}
+                                    {{ $event->description_bn }}
                                 </div>
                                 <hr class="my-1" />
                                 <div>
@@ -56,9 +56,9 @@
                                 </div>
                                 <div>
                                     <span class="text-gray-500">
-                                        Body (En):
+                                        Description (En):
                                     </span>
-                                    {{ $event->body_en }}
+                                    {{ $event->description_en }}
                                 </div>
                             </td>
                             <td class="text-center">
