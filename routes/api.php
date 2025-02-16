@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\InjuredController;
 use App\Http\Controllers\Api\MartyrController;
+use App\Http\Controllers\Api\MurdererController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,11 @@ Route::prefix('v1')->group(function () {
     Route::get('/injured/{injured}', [InjuredController::class, 'show']);
     Route::get('/injured/{id}/image.webp', [InjuredController::class, 'streamImage'])
         ->name('injured.streamImage');
+
+    Route::get('/murderers', [MurdererController::class, 'index']);
+    Route::get('/murderers/{murderer}', [MurdererController::class, 'show']);
+    Route::get('/murderers/{id}/image.webp', [MurdererController::class, 'streamImage'])
+        ->name('murderers.streamImage');
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
