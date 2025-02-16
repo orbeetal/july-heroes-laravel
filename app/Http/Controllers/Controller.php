@@ -74,5 +74,17 @@ abstract class Controller
 
         return $this->localizedNumberInText($age) . ($this->getLang() == 'bn' ? " বছর" : " years");
     }
-    
+
+    protected function getImageData($image = null)
+    {
+        if ($image && strpos($image, 'data:image') === 0)
+        {
+            $base64String = preg_replace('/^data:image\/\w+;base64,/', '', $image);
+
+            return base64_decode($base64String);
+        }
+
+        return null;
+    }
+
 }

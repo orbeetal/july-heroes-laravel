@@ -30,14 +30,9 @@ Route::prefix('v1')->group(function () {
         $endpoints = [];
 
         foreach(Route::getRoutes() as $route) {
-            $ignore_routes = [
-                'product.photo.stream',
-                'equipment.photo.stream',
-            ];
-
             if(
                 Str::startsWith($route->uri, 'api/v1/')
-                && !in_array($route->getName(), $ignore_routes)
+                && !Str::endsWith($route->getName(), '.streamImage')
             ) {
                 $formattedUri = preg_replace('/\{(\w+)\}/', ':$1', $route->uri);
 
@@ -62,9 +57,13 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/martyrs', [MartyrController::class, 'index']);
     Route::get('/martyrs/{martyr}', [MartyrController::class, 'show']);
+    Route::get('/martyrs/{id}/image.webp', [MartyrController::class, 'streamImage'])
+        ->name('martyrs.streamImage');
 
     Route::get('/injured', [InjuredController::class, 'index']);
     Route::get('/injured/{injured}', [InjuredController::class, 'show']);
+    Route::get('/injured/{id}/image.webp', [InjuredController::class, 'streamImage'])
+        ->name('injured.streamImage');
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);

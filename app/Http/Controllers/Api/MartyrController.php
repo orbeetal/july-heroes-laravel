@@ -30,6 +30,7 @@ class MartyrController extends Controller
 
             $martyrs->each(function ($martyr) {
                 $martyr->incident_date = $this->localizedDate($martyr->incident_date);
+                $martyr->image = route('martyrs.streamImage', $martyr->id);
             });
         }
 
@@ -61,8 +62,20 @@ class MartyrController extends Controller
         if($martyr) {
             $martyr->age = $this->localizedAge($martyr->age);
             $martyr->incident_date = $this->localizedDate($martyr->incident_date);
+            $martyr->image = route('martyrs.streamImage', $martyr->id);
         }
 
         return response()->json($martyr);
+    }
+
+    public function streamImage($id)
+    {
+        $martyr = Martyr::select('image')->findOrFail($id);
+
+        $imageData = $this->getImageData($martyr->image);
+        
+        return $imageData
+            ? response($imageData)->header('Content-Type', 'image/jpeg')
+            : abort(404);
     }
 }

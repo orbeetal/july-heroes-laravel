@@ -30,6 +30,7 @@ class InjuredController extends Controller
 
             $injuredList->each(function ($injured) {
                 $injured->incident_date = $this->localizedDate($injured->incident_date);
+                $injured->image = route('injured.streamImage', $injured->id);
             });
         }
 
@@ -61,8 +62,20 @@ class InjuredController extends Controller
         if($injured) {
             $injured->age = $this->localizedAge($injured->age);
             $injured->incident_date = $this->localizedDate($injured->incident_date);
+            $injured->image = route('injured.streamImage', $injured->id);
         }
 
         return response()->json($injured);
+    }
+
+    public function streamImage($id)
+    {
+        $injured = Injured::select('image')->findOrFail($id);
+
+        $imageData = $this->getImageData($injured->image);
+        
+        return $imageData
+            ? response($imageData)->header('Content-Type', 'image/jpeg')
+            : abort(404);
     }
 }
