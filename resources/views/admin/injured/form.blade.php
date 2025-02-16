@@ -2,7 +2,7 @@
     <!-- Name (Bn) -->
     <div class="col-span-full lg:col-span-6">
         <label for="name_bn" class="block text-sm font-medium text-gray-700">
-            Name (Bn) <i class="text-gray-500">[Required]</i>
+            নাম / Name (Bn) <i class="text-gray-500">[Required]</i>
         </label>
         <input
             value="{{ old('name_bn', $injured->name_bn) }}"
@@ -19,9 +19,9 @@
 
     <!-- Name (En) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="name_en" class="block text-sm font-medium text-gray-700"
-            >Name (En)</label
-        >
+        <label for="name_en" class="block text-sm font-medium text-gray-700">
+            Name (En)
+        </label>
         <input
             value="{{ old('name_en', $injured->name_en) }}"
             type="text"
@@ -56,8 +56,9 @@
         <label
             for="incident_date"
             class="block text-sm font-medium text-gray-700"
-            >Incident Date</label
         >
+            Incident Date
+        </label>
         <input
             value="{{ old('incident_date', $injured->incident_date) }}"
             type="date"
@@ -72,9 +73,12 @@
 
     <!-- Incident (Bn) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="incident_bn" class="block text-sm font-medium text-gray-700"
-            >Incident (Bn)</label
+        <label
+            for="incident_bn"
+            class="block text-sm font-medium text-gray-700"
         >
+            ঘটনার বর্ণনা / Incident Description (Bn)
+        </label>
         <textarea
             id="incident_bn"
             name="incident_bn"
@@ -88,9 +92,12 @@
 
     <!-- Incident (En) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="incident_en" class="block text-sm font-medium text-gray-700"
-            >Incident (En)</label
+        <label
+            for="incident_en"
+            class="block text-sm font-medium text-gray-700"
         >
+            Incident Description (En)
+        </label>
         <textarea
             id="incident_en"
             name="incident_en"
@@ -107,8 +114,9 @@
         <label
             for="biography_bn"
             class="block text-sm font-medium text-gray-700"
-            >Biography (Bn)</label
         >
+            ব্যক্তিগত জীবন / Biography (Bn)
+        </label>
         <textarea
             id="biography_bn"
             name="biography_bn"
@@ -125,8 +133,9 @@
         <label
             for="biography_en"
             class="block text-sm font-medium text-gray-700"
-            >Biography (En)</label
         >
+            Biography (En)
+        </label>
         <textarea
             id="biography_en"
             name="biography_en"
@@ -140,9 +149,9 @@
 
     <!-- Address (Bn) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="address_bn" class="block text-sm font-medium text-gray-700"
-            >Address (Bn)</label
-        >
+        <label for="address_bn" class="block text-sm font-medium text-gray-700">
+            জন্মস্থান / Address (Bn)
+        </label>
         <textarea
             id="address_bn"
             name="address_bn"
@@ -156,9 +165,9 @@
 
     <!-- Address (En) -->
     <div class="col-span-full lg:col-span-6">
-        <label for="address_en" class="block text-sm font-medium text-gray-700"
-            >Address (En)</label
-        >
+        <label for="address_en" class="block text-sm font-medium text-gray-700">
+            Birth Place / Address (En)
+        </label>
         <textarea
             id="address_en"
             name="address_en"
@@ -175,8 +184,9 @@
         <label
             for="occupation_bn"
             class="block text-sm font-medium text-gray-700"
-            >Occupation (Bn)</label
         >
+            পেশা / Occupation (Bn)
+        </label>
         <input
             value="{{ old('occupation_bn', $injured->occupation_bn) }}"
             type="text"
@@ -194,8 +204,9 @@
         <label
             for="occupation_en"
             class="block text-sm font-medium text-gray-700"
-            >Occupation (En)</label
         >
+            Occupation (En)
+        </label>
         <input
             value="{{ old('occupation_en', $injured->occupation_en) }}"
             type="text"
@@ -208,40 +219,84 @@
         @enderror
     </div>
 
-    <!-- University (Bn) -->
+    <!-- Institution (Bn) -->
     <div class="col-span-full lg:col-span-6">
         <label
-            for="university_bn"
+            for="institution_bn"
             class="block text-sm font-medium text-gray-700"
-            >University (Bn)</label
         >
+            Institution (Bn)
+            <i class="text-gray-500">[শিক্ষা প্রতিষ্ঠান / কর্মস্থল]</i>
+        </label>
         <input
-            value="{{ old('university_bn', $injured->university_bn) }}"
+            value="{{ old('institution_bn', $injured->institution_bn) }}"
             type="text"
-            id="university_bn"
-            name="university_bn"
+            id="institution_bn"
+            name="institution_bn"
             class="mt-1 p-2 w-full border border-gray-300 rounded-md"
         />
-        @error('university_bn')
+        @error('institution_bn')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
     </div>
 
-    <!-- University (En) -->
+    <!-- Institution (En) -->
     <div class="col-span-full lg:col-span-6">
         <label
-            for="university_en"
+            for="institution_en"
             class="block text-sm font-medium text-gray-700"
-            >University (En)</label
         >
+            Institution (En)
+            <i class="text-gray-500">[শিক্ষা প্রতিষ্ঠান / কর্মস্থল]</i>
+        </label>
         <input
-            value="{{ old('university_en', $injured->university_en) }}"
+            value="{{ old('institution_en', $injured->institution_en) }}"
             type="text"
-            id="university_en"
-            name="university_en"
+            id="institution_en"
+            name="institution_en"
             class="mt-1 p-2 w-full border border-gray-300 rounded-md"
         />
-        @error('university_en')
+        @error('institution_en')
+        <div class="text-red-500 mt-1">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Department (Bn) -->
+    <div class="col-span-full lg:col-span-6">
+        <label
+            for="department_bn"
+            class="block text-sm font-medium text-gray-700"
+        >
+            Department / Subject / Sector (Bn)
+        </label>
+        <input
+            value="{{ old('department_bn', $injured->department_bn) }}"
+            type="text"
+            id="department_bn"
+            name="department_bn"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+        />
+        @error('department_bn')
+        <div class="text-red-500 mt-1">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Department (En) -->
+    <div class="col-span-full lg:col-span-6">
+        <label
+            for="department_en"
+            class="block text-sm font-medium text-gray-700"
+        >
+            Department / Subject / Sector (En)
+        </label>
+        <input
+            value="{{ old('department_en', $injured->department_en) }}"
+            type="text"
+            id="department_en"
+            name="department_en"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+        />
+        @error('department_en')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
     </div>

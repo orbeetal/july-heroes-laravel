@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('occupation_bn')->nullable();
             $table->string('occupation_en')->nullable();
 
-            $table->string('university_bn')->nullable();
-            $table->string('university_en')->nullable();
+            $table->string('institution_bn')->nullable();
+            $table->string('institution_en')->nullable();
 
             $table->string('department_bn')->nullable();
             $table->string('department_en')->nullable();

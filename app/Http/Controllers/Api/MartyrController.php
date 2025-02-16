@@ -21,7 +21,7 @@ class MartyrController extends Controller
                     'id',
                     $this->localizedField('name'),
                     $this->localizedField('occupation'),
-                    $this->localizedField('university'),
+                    $this->localizedField('institution'),
                     'incident_date',
                 ])
                 ->skip($skip)
@@ -51,7 +51,7 @@ class MartyrController extends Controller
                 $this->localizedField('biography'),
                 $this->localizedField('address'),
                 $this->localizedField('occupation'),
-                $this->localizedField('university'),
+                $this->localizedField('institution'),
                 $this->localizedField('department'),
                 'incident_date',
                 $this->localizedField('incident'),
@@ -59,9 +59,7 @@ class MartyrController extends Controller
             ->find($id);
 
         if($martyr) {
-            $lang = $this->getLang();
- 
-            $martyr->age = $this->localizedNumberInText($martyr->age) . ($lang == 'bn' ? " বছর" : " years");
+            $martyr->age = $this->localizedAge($martyr->age);
             $martyr->incident_date = $this->localizedDate($martyr->incident_date);
         }
 

@@ -99,8 +99,8 @@ class InjuredController extends Controller
             "incident_en" => "nullable|string",
             "occupation_bn" => "nullable|string",
             "occupation_en" => "nullable|string",
-            "university_bn" => "nullable|string",
-            "university_en" => "nullable|string",
+            "institution_bn" => "nullable|string",
+            "institution_en" => "nullable|string",
             "department_bn" => "nullable|string",
             "department_en" => "nullable|string",
         ]);

@@ -21,7 +21,7 @@ abstract class Controller
     {
         $lang = $lang ?? $this->getLang();
 
-        return DB::raw("COALESCE({$field}_{$lang}, {$field}_bn) as {$field}");
+        return DB::raw("COALESCE({$field}_{$lang}, {$field}_bn, '') as {$field}");
     }
 
     protected function localizedDate($date = null, $lang = null): string
@@ -64,6 +64,15 @@ abstract class Controller
         }
 
         return (string) $text;
+    }
+
+    protected function localizedAge($age = null, $lang = null): string
+    {
+        if (!$age) {
+            return '';
+        }
+
+        return $this->localizedNumberInText($age) . ($this->getLang() == 'bn' ? " বছর" : " years");
     }
     
 }

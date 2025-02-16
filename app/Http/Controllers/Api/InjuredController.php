@@ -21,7 +21,7 @@ class InjuredController extends Controller
                     'id',
                     $this->localizedField('name'),
                     $this->localizedField('occupation'),
-                    $this->localizedField('university'),
+                    $this->localizedField('institution'),
                     'incident_date',
                 ])
                 ->skip($skip)
@@ -51,7 +51,7 @@ class InjuredController extends Controller
                 $this->localizedField('biography'),
                 $this->localizedField('address'),
                 $this->localizedField('occupation'),
-                $this->localizedField('university'),
+                $this->localizedField('institution'),
                 $this->localizedField('department'),
                 'incident_date',
                 $this->localizedField('incident'),
@@ -59,9 +59,7 @@ class InjuredController extends Controller
             ->find($id);
 
         if($injured) {
-            $lang = $this->getLang();
-    
-            $injured->age = $this->localizedNumberInText($injured->age) . ($lang == 'bn' ? " বছর" : " years");
+            $injured->age = $this->localizedAge($injured->age);
             $injured->incident_date = $this->localizedDate($injured->incident_date);
         }
 
