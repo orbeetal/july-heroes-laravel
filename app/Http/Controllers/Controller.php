@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Laravel\Facades\Image;
 
 abstract class Controller
 {
@@ -85,6 +86,23 @@ abstract class Controller
         }
 
         return null;
+    }
+
+    protected function getPhotoData($request, $width = 320, $height = 320)
+    {
+        if(!$request->hasFile('image')) {
+            return "";  
+        }
+
+        $file = $request->file('image');
+
+        $image = Image::read($file);
+
+        $image = $image->cover($width, $height)->toWebp()->toDataUri();
+
+        return [
+            "image" => $image
+        ];
     }
 
 }

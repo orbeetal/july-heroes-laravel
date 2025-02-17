@@ -36,6 +36,7 @@ class InjuredController extends Controller
     {
         $injured = Injured::create(
             $this->getValidatedData($request)
+            + $this->getPhotoData($request)
         );
 
         return to_route('dashboard.injured.show', $injured->id);
@@ -68,6 +69,7 @@ class InjuredController extends Controller
     {
         $injured->update(
             $this->getValidatedData($request, $injured->id)
+            + $this->getPhotoData($request)
         );
 
         return to_route('dashboard.injured.show', $injured->id);
@@ -89,7 +91,6 @@ class InjuredController extends Controller
             "name_bn" => "required|string",
             "name_en" => "nullable|string",
             "age" => "nullable|integer",
-            "image" => "nullable|string",
             "biography_bn" => "nullable|string",
             "biography_en" => "nullable|string",
             "address_bn" => "nullable|string",

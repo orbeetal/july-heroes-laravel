@@ -1,4 +1,29 @@
 <div class="grid gap-4 lg:grid-cols-12">
+    <!-- Image -->
+    <div class="col-span-full">
+        <div class="flex items-center">
+            <label
+                for="image"
+                class="border w-full max-w-60 aspect-square cursor-pointer overflow-hidden bg-red-300"
+            >
+                <img
+                    id="imagePreview"
+                    src="{{ $murderer->image ?? '' }}"
+                    alt="Photo 1"
+                    class="w-full aspect-square object-cover"
+                />
+                <input
+                    name="image"
+                    id="image"
+                    onchange="previewImage(event, 'imagePreview')"
+                    class="hidden"
+                    type="file"
+                    accept="image/*"
+                />
+            </label>
+        </div>
+    </div>
+
     <!-- Name (Bn) -->
     <div class="col-span-full lg:col-span-6">
         <label for="name_bn" class="block text-sm font-medium text-gray-700">
@@ -51,9 +76,7 @@
         @enderror
     </div>
 
-    <div class="col-span-full lg:col-span-6">
-
-    </div>
+    <div class="col-span-full lg:col-span-6"></div>
 
     <!-- Address (Bn) -->
     <div class="col-span-full lg:col-span-6">

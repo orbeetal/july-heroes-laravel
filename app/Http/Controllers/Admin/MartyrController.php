@@ -36,6 +36,7 @@ class MartyrController extends Controller
     {
         $martyr = Martyr::create(
             $this->getValidatedData($request)
+            + $this->getPhotoData($request)
         );
 
         return to_route('dashboard.martyrs.show', $martyr->id);
@@ -68,6 +69,7 @@ class MartyrController extends Controller
     {
         $martyr->update(
             $this->getValidatedData($request, $martyr->id)
+            + $this->getPhotoData($request)
         );
 
         return to_route('dashboard.martyrs.show', $martyr->id);
@@ -89,7 +91,6 @@ class MartyrController extends Controller
             "name_bn" => "required|string",
             "name_en" => "nullable|string",
             "age" => "nullable|integer",
-            "image" => "nullable|string",
             "biography_bn" => "nullable|string",
             "biography_en" => "nullable|string",
             "address_bn" => "nullable|string",

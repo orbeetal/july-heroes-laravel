@@ -36,6 +36,7 @@ class MurdererController extends Controller
     {
         $murderer = Murderer::create(
             $this->getValidatedData($request)
+            + $this->getPhotoData($request)
         );
 
         return to_route('dashboard.murderers.show', $murderer->id);
@@ -68,6 +69,7 @@ class MurdererController extends Controller
     {
         $murderer->update(
             $this->getValidatedData($request, $murderer->id)
+            + $this->getPhotoData($request)
         );
 
         return to_route('dashboard.murderers.show', $murderer->id);
@@ -89,7 +91,6 @@ class MurdererController extends Controller
             "name_bn" => "required|string",
             "name_en" => "nullable|string",
             "age" => "nullable|integer",
-            "image" => "nullable|string",
             "biography_bn" => "nullable|string",
             "biography_en" => "nullable|string",
             "address_bn" => "nullable|string",

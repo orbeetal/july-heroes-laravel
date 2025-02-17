@@ -20,6 +20,7 @@
                     <thead>
                         <tr class="*:px-3 *:py-2 bg-gray-200">
                             <th class="text-center">SL</th>
+                            <th class="text-center">Image</th>
                             <th class="text-left">Name</th>
                             <th class="text-center">Organization</th>
                             <th class="text-center">Designation</th>
@@ -33,6 +34,9 @@
                         >
                             <td class="text-center">
                                 {{ $murderers->firstItem() + $loop->index }}
+                            </td>
+                            <td class="text-center">
+                                <x-profile-image-preview :src="route('murderers.streamImage', $murderer->id)" />
                             </td>
                             <td class="text-left *:line-clamp-1">
                                 <div>
