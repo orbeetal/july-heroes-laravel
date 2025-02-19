@@ -21,8 +21,12 @@
                 Murderers | হত্যাকারী
             </x-dashboard-item>
 
+            <x-dashboard-item href="/dashboard/graffiti">
+                Graffiti | গ্রাফিতি
+            </x-dashboard-item>
+
             <x-dashboard-item href="/dashboard/events">
-                Events
+                Events | জুলাইয়ের দিনগুলি
             </x-dashboard-item>
 
             <x-dashboard-item href="/dashboard/users">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\GraffitiController;
 use App\Http\Controllers\Admin\InjuredController;
 use App\Http\Controllers\Admin\MartyrController;
 use App\Http\Controllers\Admin\MurdererController;
@@ -23,6 +24,9 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
         Route::resource('/martyrs', MartyrController::class);
         Route::resource('/injured', InjuredController::class);
         Route::resource('/murderers', MurdererController::class);
+        Route::resource('/graffiti', GraffitiController::class)->parameters([
+            'graffiti' => 'graffiti'
+        ]);
 
         Route::resource('/events', EventController::class);
         Route::resource('/users', UserController::class);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\GraffitiController;
 use App\Http\Controllers\Api\InjuredController;
 use App\Http\Controllers\Api\MartyrController;
 use App\Http\Controllers\Api\MurdererController;
@@ -70,6 +71,11 @@ Route::prefix('v1')->group(function () {
     Route::get('/murderers/{murderer}', [MurdererController::class, 'show']);
     Route::get('/murderers/{id}/image.webp', [MurdererController::class, 'streamImage'])
         ->name('murderers.streamImage');
+
+    Route::get('/graffiti', [GraffitiController::class, 'index']);
+    Route::get('/graffiti/{graffiti}', [GraffitiController::class, 'show']);
+    Route::get('/graffiti/{id}/image.webp', [GraffitiController::class, 'streamImage'])
+        ->name('graffiti.streamImage');
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
