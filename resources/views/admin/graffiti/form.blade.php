@@ -4,7 +4,7 @@
         <div class="flex items-center">
             <label
                 for="image"
-                class="border w-full max-w-80 aspect-video cursor-pointer overflow-hidden bg-red-300"
+                class="border w-full max-w-2xl aspect-video cursor-pointer overflow-hidden bg-red-300"
             >
                 <img
                     id="imagePreview"
