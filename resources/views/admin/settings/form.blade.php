@@ -92,18 +92,19 @@
                     </div>
                     <div class="col-span-full">
                         <label
-                            for="address"
+                            for="settings[youtube]"
                             class="block text-sm font-medium text-gray-700"
                         >
-                            Address
+                            Youtube
                         </label>
-                        <textarea
-                            type="text"
-                            id="address"
-                            name="settings[address]"
-                            class="mt-1 p-2 w-full border border-gray-300 rounded-md min-h-28"
-                        >{{ old('address') ?? ($settings['address'] ?? '') }}</textarea>
-                        @error('address')
+                        <input
+                            value="{{ old('youtube') ?? ($settings['youtube'] ?? '') }}"
+                            type="url"
+                            id="youtube"
+                            name="settings[youtube]"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                        />
+                        @error('youtube')
                         <div class="text-red-500 mt-1">{{ $message }}</div>
                         @enderror
                     </div>
