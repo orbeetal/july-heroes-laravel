@@ -88,10 +88,10 @@ abstract class Controller
         return null;
     }
 
-    protected function getPhotoData($request, $width = 320, $height = 320)
+    protected function getPhotoData($request, $width = 320, $height = 320): array
     {
         if(!$request->hasFile('image')) {
-            return "";  
+            return [];  
         }
 
         $file = $request->file('image');
