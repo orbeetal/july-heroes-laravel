@@ -29,6 +29,10 @@
                 Events | জুলাইয়ের দিনগুলি
             </x-dashboard-item>
 
+            <x-dashboard-item href="/dashboard/banners">
+                Page Banners | পেইজ ব্যানার
+            </x-dashboard-item>
+
             <x-dashboard-item href="/dashboard/users">
                 Admin Users
                 <x-slot name="icon">

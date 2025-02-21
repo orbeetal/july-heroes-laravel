@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GraffitiController;
 use App\Http\Controllers\Admin\InjuredController;
@@ -29,6 +30,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
         ]);
 
         Route::resource('/events', EventController::class);
+        Route::resource('/banners', BannerController::class);
         Route::resource('/users', UserController::class);
     });
 });

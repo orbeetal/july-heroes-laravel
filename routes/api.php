@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\GraffitiController;
 use App\Http\Controllers\Api\InjuredController;
@@ -79,6 +80,13 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
+
+    Route::get('/page/home/banners', [BannerController::class, 'home']);
+    Route::get('/page/martyrs/banners', [BannerController::class, 'martyrs']);
+    Route::get('/page/injured/banners', [BannerController::class, 'injured']);
+    Route::get('/page/murderers/banners', [BannerController::class, 'murderers']);
+    Route::get('/banners/{id}/image.webp', [BannerController::class, 'streamImage'])
+        ->name('banners.streamImage');
 
     Route::get('/settings', [SettingController::class, 'index']);
 });
