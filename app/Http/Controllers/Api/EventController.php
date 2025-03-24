@@ -8,17 +8,36 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::query()
-            ->select([
-                'id',
-                $this->localizedField('title'),
-                $this->localizedField('description'),
-            ])
-            ->get();
+        $skip = (int) ($request->skip ?? 0);
+        $take = (int) ($request->take ?? 10);
 
-        return response()->json($events);
+        $total = Event::count();
+
+        if ($total > 0) {
+            $eventList = Event::query()
+                ->select([
+                    'id',
+                    'date',
+                    $this->localizedField('title'),
+                    $this->localizedField('location'),
+                ])
+                ->skip($skip)
+                ->take($take)
+                ->get();
+
+            $eventList->each(function ($event) {
+                $event->image = route('events.streamImage', $event->id);
+            });
+        }
+
+        return response()->json([
+            'total' => $total,
+            'skip'  => $skip,
+            'take'  => $take,
+            'data'  => $total ? $eventList : [],
+        ]);
     }
 
     public function show($id)
@@ -26,10 +45,18 @@ class EventController extends Controller
         $event = Event::query()
             ->select([
                 'id',
+                'date',
                 $this->localizedField('title'),
                 $this->localizedField('description'),
+                $this->localizedField('location'),
             ])
             ->find($id);
+
+        if($event) {
+            $event->age = $this->localizedAge($event->age);
+            $event->incident_date = $this->localizedDate($event->incident_date);
+            $event->image = route('events.streamImage', $event->id);
+        }
 
         return response()->json($event);
     }
