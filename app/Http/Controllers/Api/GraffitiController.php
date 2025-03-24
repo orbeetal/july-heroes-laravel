@@ -67,7 +67,7 @@ class GraffitiController extends Controller
         $imageData = $this->getImageData($graffiti->image);
         
         return $imageData
-            ? response($imageData)->header('Content-Type', 'image/jpeg')
+            ? response($imageData)->header('Content-Type', 'image/webp')
             : abort(404);
     }
 }

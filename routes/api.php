@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\GraffitiController;
+use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\InjuredController;
 use App\Http\Controllers\Api\MartyrController;
 use App\Http\Controllers\Api\MurdererController;
@@ -78,8 +79,13 @@ Route::prefix('v1')->group(function () {
     Route::get('/graffiti/{id}/image.webp', [GraffitiController::class, 'streamImage'])
         ->name('graffiti.streamImage');
 
+    Route::get('/incidents', [IncidentController::class, 'index']);
+    Route::get('/incidents/{incident}', [IncidentController::class, 'show']);
+
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
+    Route::get('/events/{id}/image.webp', [EventController::class, 'streamImage'])
+        ->name('events.streamImage');
 
     Route::get('/page/home/banners', [BannerController::class, 'home']);
     Route::get('/page/martyrs/banners', [BannerController::class, 'martyrs']);

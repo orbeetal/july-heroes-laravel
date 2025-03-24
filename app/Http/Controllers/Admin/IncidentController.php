@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
+use App\Models\Incident;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class IncidentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,11 @@ class EventController extends Controller
     public function index()
     {
         // return
-        $events = Event::query()
+        $incidents = Incident::query()
             // ->latest()
             ->paginate(18);
 
-        return view("admin.events.index", compact('events'));
+        return view("admin.incidents.index", compact('incidents'));
     }
 
     /**
@@ -26,9 +26,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        $event = new Event();
+        $incident = new Incident();
 
-        return view("admin.events.create", compact('event'));
+        return view("admin.incidents.create", compact('incident'));
     }
 
     /**
@@ -38,49 +38,47 @@ class EventController extends Controller
     {
         // return $request;
 
-        $event = Event::create(
+        $incident = Incident::create(
             $this->getValidatedData($request)
-            + $this->getPhotoData($request, 800, 450)
         );
 
-        return to_route('dashboard.events.show', $event->id);
+        return to_route('dashboard.incidents.show', $incident->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(Incident $incident)
     {
-        return to_route('dashboard.events.index', [
-            'event' => $event->id,
+        return to_route('dashboard.incidents.index', [
+            'incident' => $incident->id,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit(Incident $incident)
     {
-        return view("admin.events.edit", compact('event'));
+        return view("admin.incidents.edit", compact('incident'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Incident $incident)
     {
-        $event->update(
-            $this->getValidatedData($request, $event->id)
-            + $this->getPhotoData($request, 800, 450)
+        $incident->update(
+            $this->getValidatedData($request, $incident->id)
         );
 
-        return to_route('dashboard.events.show', $event->id);
+        return to_route('dashboard.incidents.show', $incident->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy(Incident $incident)
     {
         //
     }
@@ -90,12 +88,8 @@ class EventController extends Controller
         return $request->validate([
             "title_bn" => "required|string",
             "title_en" => "nullable|string",
-            "location_bn" => "nullable|string",
-            "location_en" => "nullable|string",
             "description_bn" => "required|string",
             "description_en" => "nullable|string",
-            "status" => "nullable|boolean",
-            "date" => "required|date",
         ]);
     }
 }

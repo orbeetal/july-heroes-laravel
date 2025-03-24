@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
+use App\Models\Incident;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class IncidentController extends Controller
 {
     public function index()
     {
-        $events = Event::query()
+        $incidents = Incident::query()
             ->select([
                 'id',
                 $this->localizedField('title'),
@@ -18,12 +18,12 @@ class EventController extends Controller
             ])
             ->get();
 
-        return response()->json($events);
+        return response()->json($incidents);
     }
 
     public function show($id)
     {
-        $event = Event::query()
+        $incident = Incident::query()
             ->select([
                 'id',
                 $this->localizedField('title'),
@@ -31,17 +31,6 @@ class EventController extends Controller
             ])
             ->find($id);
 
-        return response()->json($event);
-    }
-
-    public function streamImage($id)
-    {
-        $event = Event::select('image')->findOrFail($id);
-
-        $imageData = $this->getImageData($event->image);
-        
-        return $imageData
-            ? response($imageData)->header('Content-Type', 'image/webp')
-            : abort(404);
+        return response()->json($incident);
     }
 }

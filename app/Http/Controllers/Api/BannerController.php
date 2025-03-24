@@ -51,7 +51,7 @@ class BannerController extends Controller
         $imageData = $this->getImageData($banner->image);
         
         return $imageData
-            ? response($imageData)->header('Content-Type', 'image/jpeg')
+            ? response($imageData)->header('Content-Type', 'image/webp')
             : abort(404);
     }
 }

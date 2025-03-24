@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GraffitiController;
+use App\Http\Controllers\Admin\IncidentController;
 use App\Http\Controllers\Admin\InjuredController;
 use App\Http\Controllers\Admin\MartyrController;
 use App\Http\Controllers\Admin\MurdererController;
@@ -29,6 +30,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
             'graffiti' => 'graffiti'
         ]);
 
+        Route::resource('/incidents', IncidentController::class);
         Route::resource('/events', EventController::class);
         Route::resource('/banners', BannerController::class);
         Route::resource('/users', UserController::class);

@@ -75,7 +75,7 @@ class MartyrController extends Controller
         $imageData = $this->getImageData($martyr->image);
         
         return $imageData
-            ? response($imageData)->header('Content-Type', 'image/jpeg')
+            ? response($imageData)->header('Content-Type', 'image/webp')
             : abort(404);
     }
 }

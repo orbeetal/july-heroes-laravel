@@ -72,7 +72,7 @@ class MurdererController extends Controller
         $imageData = $this->getImageData($murderer->image);
         
         return $imageData
-            ? response($imageData)->header('Content-Type', 'image/jpeg')
+            ? response($imageData)->header('Content-Type', 'image/webp')
             : abort(404);
     }
 }

@@ -2,14 +2,16 @@
     <x-slot name="header">
         <div class="flex justify-between gap-2 items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __("Event List") }}
+                {{ __("Incident List") }}
             </h2>
+            @if(count($incidents) < 18)
             <a
-                href="{{ route('dashboard.events.create') }}"
+                href="{{ route('dashboard.incidents.create') }}"
                 class="px-4 py-1 border rounded-lg cursor-pointer border-brand-primary text-brand-primary bg-white hover:text-white hover:bg-brand-primary"
             >
-                New Event
+                New Incident
             </a>
+            @endif
         </div>
     </x-slot>
 
@@ -20,43 +22,56 @@
                     <thead>
                         <tr class="*:px-3 *:py-2 bg-gray-200">
                             <th class="text-center">SL</th>
-                            <th class="text-center">Image</th>
-                            <th class="text-left">Title</th>
+                            <th class="text-left">Data</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($events as $event)
+                        @forelse($incidents as $incident)
                         <tr
-                            class="*:px-3 *:py-3 hover:bg-gray-100 {{ request('event') == $event->id ? 'bg-brand-primary/15' : '' }}"
+                            class="*:px-3 *:py-3 hover:bg-gray-100 {{ request('incident') == $incident->id ? 'bg-brand-primary/15' : '' }}"
                         >
                             <td class="text-center">
-                                {{ $events->firstItem() + $loop->index }}
-                            </td>
-                            <td class="text-center">
-                                <x-thumbnail-image-preview :src="route('events.streamImage', $event->id)" />
+                                {{ $incidents->firstItem() + $loop->index }}
                             </td>
                             <td class="text-left *:line-clamp-1">
                                 <div>
-                                    <span class="text-gray-500"> Bn: </span>
-                                    {{ $event->title_bn }}
+                                    <span class="text-gray-500">
+                                        Title (Bn):
+                                    </span>
+                                    {{ $incident->title_bn }}
                                 </div>
                                 <div>
-                                    <span class="text-gray-500"> En: </span>
-                                    {{ $event->title_en }}
+                                    <span class="text-gray-500">
+                                        Description (Bn):
+                                    </span>
+                                    {{ $incident->description_bn }}
+                                </div>
+                                <hr class="my-1" />
+                                <div>
+                                    <span class="text-gray-500">
+                                        Title (En):
+                                    </span>
+                                    {{ $incident->title_en }}
+                                </div>
+                                <div>
+                                    <span class="text-gray-500">
+                                        Description (En):
+                                    </span>
+                                    {{ $incident->description_en }}
                                 </div>
                             </td>
                             <td class="text-center">
                                 {{--
                                 <a
-                                    href="{{ route('dashboard.events.show', $event->id) }}"
+                                    href="{{ route('dashboard.incidents.show', $incident->id) }}"
                                 >
                                     Show
                                 </a>
                                 --}}
                                 <a
                                     class="px-4 text-sm py-1 rounded-lg bg-sky-500 text-white"
-                                    href="{{ route('dashboard.events.edit', $event->id) }}"
+                                    href="{{ route('dashboard.incidents.edit', $incident->id) }}"
                                     >Edit</a
                                 >
                             </td>
@@ -76,7 +91,7 @@
                 </table>
             </div>
             <div class="mt-4">
-                {{ $events->links() }}
+                {{ $incidents->links() }}
             </div>
         </div>
     </div>
