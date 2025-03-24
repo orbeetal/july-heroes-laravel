@@ -47,9 +47,9 @@ class MartyrController extends Controller
      */
     public function show(Martyr $martyr)
     {
-        return to_route('dashboard.martyrs.index', [
-            'martyr' => $martyr->id,
-        ]);
+        // return to_route('dashboard.martyrs.index', [
+        //     'martyr' => $martyr->id,
+        // ]);
 
         return view("admin.martyrs.show", compact('martyr'));
     }

@@ -69,18 +69,10 @@
                                 </div>
                             </td>
                             <td class="text-center">
-                                {{--
-                                <a
-                                    href="{{ route('dashboard.murderers.show', $murderer->id) }}"
-                                >
-                                    Show
-                                </a>
-                                --}}
-                                <a
-                                    class="px-4 text-sm py-1 rounded-lg bg-sky-500 text-white"
-                                    href="{{ route('dashboard.murderers.edit', $murderer->id) }}"
-                                    >Edit</a
-                                >
+                                <x-action-edit-and-details
+                                    :edit_href="route('dashboard.murderers.edit', $murderer->id)"
+                                    :details_href="route('dashboard.murderers.show', $murderer->id)"
+                                />
                             </td>
                         </tr>
                         @empty

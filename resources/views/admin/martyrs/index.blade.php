@@ -36,7 +36,9 @@
                                 {{ $martyrs->firstItem() + $loop->index }}
                             </td>
                             <td class="text-center">
-                                <x-profile-image-preview :src="route('martyrs.streamImage', $martyr->id)" />
+                                <x-profile-image-preview
+                                    :src="route('martyrs.streamImage', $martyr->id)"
+                                />
                             </td>
                             <td class="text-left *:line-clamp-1">
                                 <div>
@@ -62,18 +64,10 @@
                                 {{ $martyr->incident_date }}
                             </td>
                             <td class="text-center">
-                                {{--
-                                <a
-                                    href="{{ route('dashboard.martyrs.show', $martyr->id) }}"
-                                >
-                                    Show
-                                </a>
-                                --}}
-                                <a
-                                    class="px-4 text-sm py-1 rounded-lg bg-sky-500 text-white"
-                                    href="{{ route('dashboard.martyrs.edit', $martyr->id) }}"
-                                    >Edit</a
-                                >
+                                <x-action-edit-and-details
+                                    :edit_href="route('dashboard.martyrs.edit', $martyr->id)"
+                                    :details_href="route('dashboard.martyrs.show', $martyr->id)"
+                                />
                             </td>
                         </tr>
                         @empty

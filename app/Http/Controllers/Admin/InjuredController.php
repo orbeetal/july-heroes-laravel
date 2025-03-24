@@ -47,9 +47,9 @@ class InjuredController extends Controller
      */
     public function show(Injured $injured)
     {
-        return to_route('dashboard.injured.index', [
-            'injured' => $injured->id,
-        ]);
+        // return to_route('dashboard.injured.index', [
+        //     'injured' => $injured->id,
+        // ]);
 
         return view("admin.injured.show", compact('injured'));
     }

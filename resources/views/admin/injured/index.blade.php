@@ -62,18 +62,10 @@
                                 {{ $injured->incident_date }}
                             </td>
                             <td class="text-center">
-                                {{--
-                                <a
-                                    href="{{ route('dashboard.injured.show', $injured->id) }}"
-                                >
-                                    Show
-                                </a>
-                                --}}
-                                <a
-                                    class="px-4 text-sm py-1 rounded-lg bg-sky-500 text-white"
-                                    href="{{ route('dashboard.injured.edit', $injured->id) }}"
-                                    >Edit</a
-                                >
+                                <x-action-edit-and-details
+                                    :edit_href="route('dashboard.injured.edit', $injured->id)"
+                                    :details_href="route('dashboard.injured.show', $injured->id)"
+                                />
                             </td>
                         </tr>
                         @empty

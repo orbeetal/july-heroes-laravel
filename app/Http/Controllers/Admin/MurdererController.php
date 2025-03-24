@@ -47,9 +47,9 @@ class MurdererController extends Controller
      */
     public function show(Murderer $murderer)
     {
-        return to_route('dashboard.murderers.index', [
-            'murderer' => $murderer->id,
-        ]);
+        // return to_route('dashboard.murderers.index', [
+        //     'murderer' => $murderer->id,
+        // ]);
 
         return view("admin.murderers.show", compact('murderer'));
     }
