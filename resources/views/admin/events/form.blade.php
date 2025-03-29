@@ -150,12 +150,12 @@
         >
             Description / বর্ণনা (Bn)
         </label>
-        <textarea
+        <x-text-editor
             id="description_bn"
             name="description_bn"
-            class="w-full min-h-80 p-2 border border-gray-300 rounded-lg"
-            >{{ old('description_bn', $event->description_bn) }}</textarea
-        >
+            class="w-full min-h-80 rounded-lg"
+            :value="old('description_bn', $event->description_bn)"
+        />
         @error('description_bn')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
@@ -169,12 +169,12 @@
         >
             Description (En)
         </label>
-        <textarea
+        <x-text-editor
             id="description_en"
             name="description_en"
-            class="w-full min-h-80 p-2 border border-gray-300 rounded-lg"
-            >{{ old('description_en', $event->description_en) }}</textarea
-        >
+            class="w-full min-h-80 rounded-lg"
+            :value="old('description_bn', $event->description_en)"
+        />
         @error('description_en')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror

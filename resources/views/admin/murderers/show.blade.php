@@ -34,30 +34,6 @@
                 <div><strong>Address (En):</strong> {{ $murderer->address_en }}</div>
             </div>
 
-            {{-- Biography --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <strong>ব্যক্তিগত জীবন (Bn):</strong>
-                    <p class="whitespace-pre-line text-gray-700">{{ $murderer->biography_bn }}</p>
-                </div>
-                <div>
-                    <strong>Biography (En):</strong>
-                    <p class="whitespace-pre-line text-gray-700">{{ $murderer->biography_en }}</p>
-                </div>
-            </div>
-
-            {{-- Murder Incident --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <strong>হত্যার বিবরণ (Bn):</strong>
-                    <p class="whitespace-pre-line text-gray-700">{{ $murderer->incident_details_bn }}</p>
-                </div>
-                <div>
-                    <strong>Murder Details (En):</strong>
-                    <p class="whitespace-pre-line text-gray-700">{{ $murderer->incident_details_en }}</p>
-                </div>
-            </div>
-
             {{-- Profession --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div><strong>পেশা (Bn):</strong> {{ $murderer->occupation_bn }}</div>
@@ -66,6 +42,38 @@
                 <div><strong>Organization (En):</strong> {{ $murderer->organization_en }}</div>
                 <div><strong>পদবী (Bn):</strong> {{ $murderer->designation_bn }}</div>
                 <div><strong>Designation (En):</strong> {{ $murderer->designation_en }}</div>
+            </div>
+
+            {{-- Biography --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <strong>ব্যক্তিগত জীবন (Bn):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $murderer->biography_bn !!}
+                    </div>
+                </div>
+                <div>
+                    <strong>Biography (En):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $murderer->biography_en !!}
+                    </div>
+                </div>
+            </div>
+
+            {{-- Murder Incident --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <strong>হত্যার বিবরণ (Bn):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $murderer->incident_details_bn !!}
+                    </div>
+                </div>
+                <div>
+                    <strong>Murder Details (En):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $murderer->incident_details_en !!}
+                    </div>
+                </div>
             </div>
 
             {{-- Back Button --}}

@@ -41,13 +41,12 @@
             Description / বর্ণনা (Bn)
             <i class="text-gray-500">[Default]</i>
         </label>
-        <textarea
+        <x-text-editor
             id="description_bn"
             name="description_bn"
             class="w-full min-h-80 rounded-lg"
-            required
-            >{{ $incident->description_bn }}</textarea
-        >
+            :value="$incident->description_bn"
+        />
         @error('description_bn')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
@@ -58,12 +57,12 @@
         <label for="description_en" class="block text-sm font-medium text-gray-700">
             Description (En)
         </label>
-        <textarea
+        <x-text-editor
             id="description_en"
             name="description_en"
             class="w-full min-h-80 rounded-lg"
-            >{{ $incident->description_en }}</textarea
-        >
+            :value="$incident->description_en"
+        />
         @error('description_en')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror

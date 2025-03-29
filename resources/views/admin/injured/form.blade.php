@@ -13,7 +13,7 @@
                     class="w-full aspect-square object-cover"
                 />
                 <input
-                    name="image"
+                    name="image"    
                     id="image"
                     onchange="previewImage(event, 'imagePreview')"
                     class="hidden"
@@ -107,12 +107,12 @@
         >
             ঘটনার বর্ণনা / Incident Description (Bn)
         </label>
-        <textarea
+        <x-text-editor
             id="incident_bn"
             name="incident_bn"
-            class="w-full min-h-40 p-2 border border-gray-300 rounded-lg"
-            >{{ old('incident_bn', $injured->incident_bn) }}</textarea
-        >
+            class="w-full min-h-80 rounded-lg"
+            :value="old('incident_bn', $injured->incident_bn)"
+        />
         @error('incident_bn')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
@@ -126,12 +126,12 @@
         >
             Incident Description (En)
         </label>
-        <textarea
+        <x-text-editor
             id="incident_en"
             name="incident_en"
-            class="w-full min-h-40 p-2 border border-gray-300 rounded-lg"
-            >{{ old('incident_en', $injured->incident_en) }}</textarea
-        >
+            class="w-full min-h-80 rounded-lg"
+            :value="old('incident_en', $injured->incident_en)"
+        />
         @error('incident_en')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
@@ -145,12 +145,12 @@
         >
             ব্যক্তিগত জীবন / Biography (Bn)
         </label>
-        <textarea
+        <x-text-editor
             id="biography_bn"
             name="biography_bn"
-            class="w-full min-h-40 p-2 border border-gray-300 rounded-lg"
-            >{{ old('biography_bn', $injured->biography_bn) }}</textarea
-        >
+            class="w-full min-h-80 rounded-lg"
+            :value="old('biography_bn', $injured->biography_bn)"
+        />
         @error('biography_bn')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror
@@ -164,12 +164,12 @@
         >
             Biography (En)
         </label>
-        <textarea
+        <x-text-editor
             id="biography_en"
             name="biography_en"
-            class="w-full min-h-40 p-2 border border-gray-300 rounded-lg"
-            >{{ old('biography_en', $injured->biography_en) }}</textarea
-        >
+            class="w-full min-h-80 rounded-lg"
+            :value="old('biography_en', $injured->biography_en)"
+        />
         @error('biography_en')
         <div class="text-red-500 mt-1">{{ $message }}</div>
         @enderror

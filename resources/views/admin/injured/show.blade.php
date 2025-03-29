@@ -29,30 +29,6 @@
                 <div><strong>Incident Date:</strong> {{ $injured->incident_date }}</div>
             </div>
 
-            {{-- Incident Description --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <strong>ঘটনার বর্ণনা (Bn):</strong>
-                    <p class="text-gray-700 whitespace-pre-line">{{ $injured->incident_bn }}</p>
-                </div>
-                <div>
-                    <strong>Incident Description (En):</strong>
-                    <p class="text-gray-700 whitespace-pre-line">{{ $injured->incident_en }}</p>
-                </div>
-            </div>
-
-            {{-- Biography --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <strong>ব্যক্তিগত জীবন (Bn):</strong>
-                    <p class="text-gray-700 whitespace-pre-line">{{ $injured->biography_bn }}</p>
-                </div>
-                <div>
-                    <strong>Biography (En):</strong>
-                    <p class="text-gray-700 whitespace-pre-line">{{ $injured->biography_en }}</p>
-                </div>
-            </div>
-
             {{-- Address --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div><strong>ঠিকানা (Bn):</strong> {{ $injured->address_bn }}</div>
@@ -67,6 +43,38 @@
                 <div><strong>Institution (En):</strong> {{ $injured->institution_en }}</div>
                 <div><strong>Department (Bn):</strong> {{ $injured->department_bn }}</div>
                 <div><strong>Department (En):</strong> {{ $injured->department_en }}</div>
+            </div>
+
+            {{-- Incident Description --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <strong>ঘটনার বর্ণনা (Bn):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $injured->incident_bn !!}
+                    </div>
+                </div>
+                <div>
+                    <strong>Incident Description (En):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $injured->incident_en !!}
+                    </div>
+                </div>
+            </div>
+
+            {{-- Biography --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <strong>ব্যক্তিগত জীবন (Bn):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $injured->biography_bn !!}
+                    </div>
+                </div>
+                <div>
+                    <strong>Biography (En):</strong>
+                    <div class="prose max-w-full border p-3 rounded-lg">
+                        {!! $injured->biography_en !!}
+                    </div>
+                </div>
             </div>
 
             {{-- Back Button --}}

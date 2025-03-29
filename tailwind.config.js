@@ -1,4 +1,5 @@
 import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
@@ -22,9 +23,9 @@ export default {
             },
             container: {
                 center: true,
-            }
+            },
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, typography],
 };

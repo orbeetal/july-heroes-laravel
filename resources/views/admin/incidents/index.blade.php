@@ -23,6 +23,8 @@
                         <tr class="*:px-3 *:py-2 bg-gray-200">
                             <th class="text-center">SL</th>
                             <th class="text-left">Data</th>
+                            <th class="text-left">Description (BN)</th>
+                            <th class="text-left">Description (EN)</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -34,18 +36,12 @@
                             <td class="text-center">
                                 {{ $incidents->firstItem() + $loop->index }}
                             </td>
-                            <td class="text-left *:line-clamp-1">
+                            <td class="text-left *:line-clamp-2">
                                 <div>
                                     <span class="text-gray-500">
                                         Title (Bn):
                                     </span>
                                     {{ $incident->title_bn }}
-                                </div>
-                                <div>
-                                    <span class="text-gray-500">
-                                        Description (Bn):
-                                    </span>
-                                    {{ $incident->description_bn }}
                                 </div>
                                 <hr class="my-1" />
                                 <div>
@@ -54,11 +50,15 @@
                                     </span>
                                     {{ $incident->title_en }}
                                 </div>
-                                <div>
-                                    <span class="text-gray-500">
-                                        Description (En):
-                                    </span>
-                                    {{ $incident->description_en }}
+                            </td>
+                            <td class="text-left *:line-clamp-4">
+                                <div class="prose">
+                                    {!! $incident->description_bn !!}
+                                </div>
+                            </td>
+                            <td class="text-left *:line-clamp-4">
+                                <div class="prose">
+                                    {!! $incident->description_en !!}
                                 </div>
                             </td>
                             <td class="text-center">
