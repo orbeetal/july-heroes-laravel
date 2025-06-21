@@ -16,14 +16,19 @@ class InjuredController extends Controller
         $total = Injured::count();
 
         if ($total > 0) {
+            $lang = $this->getLang($request);
+
             $injuredList = Injured::query()
                 ->select([
                     'id',
-                    $this->localizedField('name'),
-                    $this->localizedField('occupation'),
-                    $this->localizedField('institution'),
+                    $this->localizedField('name', $lang),
+                    $this->localizedField('occupation', $lang),
+                    $this->localizedField('institution', $lang),
                     'incident_date',
                 ])
+                ->localizedFilter('occupation', $request->occupation, $lang)
+                ->localizedFilter('institution', $request->institution, $lang)
+                ->search($request->search)
                 ->skip($skip)
                 ->take($take)
                 ->get();
@@ -66,6 +71,17 @@ class InjuredController extends Controller
         }
 
         return response()->json($injured);
+    }
+
+    public function filters()
+    {
+        $occupations = Injured::distinct()->pluck($this->localizedField('occupation'));
+        $institutions = Injured::distinct()->pluck($this->localizedField('institution'));
+
+        return response()->json([
+            'occupation' => $occupations->filter(fn($value) => !is_null($value) && $value !== ''),
+            'institution' => $institutions->filter(fn($value) => !is_null($value) && $value !== ''),
+        ]);
     }
 
     public function streamImage($id)

@@ -42,7 +42,7 @@ Route::prefix('v1')->group(function () {
 
                 $formattedUriWithDefault = preg_replace('/\{(\w+)\}/', '1', $route->uri);
 
-                $endpoints[] = [
+                $endpoint = [
                     'method' => $route->methods[0],
                     "endpoint" => "/" . $formattedUri,
                     'examples' => [
@@ -51,6 +51,36 @@ Route::prefix('v1')->group(function () {
                     ],
                 ];
 
+                if(in_array($formattedUri, ['api/v1/martyrs', 'api/v1/injured', 'api/v1/murderers']))
+                {
+                    $placeholder = $formattedUri === 'api/v1/murderers'
+                        ? 'Search by name or occupation or organization'
+                        : 'Search by name or occupation or institution';
+
+                    $endpoint["search"] = [
+                        'query' => 'search',
+                        'type' => 'string',
+                        'placeholder' => $placeholder,
+                        'url' => url($formattedUriWithDefault) . '?search=text',
+                    ];
+
+                    $endpoint["filters"] = [
+                        'data' => [
+                            'bn' => url($formattedUriWithDefault) . '/filters?lang=bn',
+                            'en' => url($formattedUriWithDefault) . '/filters?lang=en',
+                        ],
+                        'query' => 'filter item',
+                        'type' => 'string',
+                        'example' => [
+                            'query' => 'occupation',
+                            'type' => 'string',
+                            'placeholder' => 'Filter by occupation',
+                            'url' => url($formattedUriWithDefault) . '?occupation=teacher',
+                        ],
+                    ];
+                }
+                
+                $endpoints[] = $endpoint;
             }
         }
 
@@ -59,16 +89,19 @@ Route::prefix('v1')->group(function () {
         ]);
     });
 
+    Route::get('/martyrs/filters', [MartyrController::class, 'filters']);
     Route::get('/martyrs', [MartyrController::class, 'index']);
     Route::get('/martyrs/{martyr}', [MartyrController::class, 'show']);
     Route::get('/martyrs/{id}/image.webp', [MartyrController::class, 'streamImage'])
         ->name('martyrs.streamImage');
 
+    Route::get('/injured/filters', [InjuredController::class, 'filters']);
     Route::get('/injured', [InjuredController::class, 'index']);
     Route::get('/injured/{injured}', [InjuredController::class, 'show']);
     Route::get('/injured/{id}/image.webp', [InjuredController::class, 'streamImage'])
         ->name('injured.streamImage');
 
+    Route::get('/murderers/filters', [MurdererController::class, 'filters']);
     Route::get('/murderers', [MurdererController::class, 'index']);
     Route::get('/murderers/{murderer}', [MurdererController::class, 'show']);
     Route::get('/murderers/{id}/image.webp', [MurdererController::class, 'streamImage'])

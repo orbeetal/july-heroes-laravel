@@ -16,14 +16,19 @@ class MurdererController extends Controller
         $total = Murderer::count();
 
         if ($total > 0) {
+            $lang = $this->getLang($request);
+
             $murderers = Murderer::query()
                 ->select([
                     'id',
-                    $this->localizedField('name'),
-                    $this->localizedField('occupation'),
-                    $this->localizedField('organization'),
-                    $this->localizedField('designation'),
+                    $this->localizedField('name', $lang),
+                    $this->localizedField('occupation', $lang),
+                    $this->localizedField('organization', $lang),
+                    $this->localizedField('designation', $lang),
                 ])
+                ->localizedFilter('occupation', $request->occupation, $lang)
+                ->localizedFilter('organization', $request->organization, $lang)
+                ->search($request->search)
                 ->skip($skip)
                 ->take($take)
                 ->get();
@@ -63,6 +68,17 @@ class MurdererController extends Controller
         }
 
         return response()->json($murderer);
+    }
+
+    public function filters()
+    {
+        $occupations = Murderer::distinct()->pluck($this->localizedField('occupation'));
+        $organizations = Murderer::distinct()->pluck($this->localizedField('organization'));
+
+        return response()->json([
+            'occupation' => $occupations->filter(fn($value) => !is_null($value) && $value !== ''),
+            'organization' => $organizations->filter(fn($value) => !is_null($value) && $value !== ''),
+        ]);
     }
 
     public function streamImage($id)

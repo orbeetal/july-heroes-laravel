@@ -4,12 +4,10 @@ namespace App\Traits\Scopes;
 
 trait ScopeFilter
 {
-    public function scopeFilter($query):void
+    public function scopeFilter($query, $column, $value):void
     {
-        $fields = request()->fields ?? "*";
-        
-        $select = explode(",", $fields);
-
-        $query->select($select);
+        $query->when($value, function ($query) use ($column, $value) {
+            $query->where($column, $value); 
+        });
     }
 }
