@@ -4,17 +4,21 @@ namespace App\Traits\Scopes;
 
 trait ScopeLocalizedFilter
 {
-    public function scopeLocalizedFilter($query, $property, $value, $lang = null):void
+    public function scopeLocalizedFilter($query, $property, $value, $lang = null): void
     {
-        $query->when($value, function ($query) use ($property, $value, $lang) {
-            if($lang) {
-                $query->where("{$property}_{$lang}", $value);
-            } else {
-                $query->where(function ($query) use ($property, $value) {
-                    $query->where("{$property}_bn", $value)
-                        ->orWhere("{$property}_en", $value);
-                });
-            }
-        });
+        if (is_null($value) || $value === '' || $value === []) {
+            return;
+        }
+
+        $values = is_array($value) ? $value : explode(',', $value);
+
+        if ($lang) {
+            $query->whereIn("{$property}_{$lang}", $values);
+        } else {
+            $query->where(function ($query) use ($property, $values) {
+                $query->whereIn("{$property}_bn", $values)
+                    ->orWhereIn("{$property}_en", $values);
+            });
+        }
     }
 }

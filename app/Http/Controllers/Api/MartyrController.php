@@ -26,8 +26,8 @@ class MartyrController extends Controller
                     $this->localizedField('institution', $lang),
                     'incident_date',
                 ])
-                ->localizedFilter('occupation', $request->occupation, $lang)
-                ->localizedFilter('institution', $request->institution, $lang)
+                ->localizedFilter('occupation', $request->occupations, $lang)
+                ->localizedFilter('institution', $request->institutions, $lang)
                 ->search($request->search)
                 ->skip($skip)
                 ->take($take)
@@ -79,8 +79,8 @@ class MartyrController extends Controller
         $institutions = Martyr::distinct()->pluck($this->localizedField('institution'));
 
         return response()->json([
-            'occupation' => $occupations->filter(fn($value) => !is_null($value) && $value !== ''),
-            'institution' => $institutions->filter(fn($value) => !is_null($value) && $value !== ''),
+            'occupations' => $occupations->filter(fn($value) => !is_null($value) && $value !== ''),
+            'institutions' => $institutions->filter(fn($value) => !is_null($value) && $value !== ''),
         ]);
     }
 

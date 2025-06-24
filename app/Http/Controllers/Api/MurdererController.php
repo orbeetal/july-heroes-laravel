@@ -26,8 +26,8 @@ class MurdererController extends Controller
                     $this->localizedField('organization', $lang),
                     $this->localizedField('designation', $lang),
                 ])
-                ->localizedFilter('occupation', $request->occupation, $lang)
-                ->localizedFilter('organization', $request->organization, $lang)
+                ->localizedFilter('occupation', $request->occupations, $lang)
+                ->localizedFilter('organization', $request->organizations, $lang)
                 ->search($request->search)
                 ->skip($skip)
                 ->take($take)
@@ -76,8 +76,8 @@ class MurdererController extends Controller
         $organizations = Murderer::distinct()->pluck($this->localizedField('organization'));
 
         return response()->json([
-            'occupation' => $occupations->filter(fn($value) => !is_null($value) && $value !== ''),
-            'organization' => $organizations->filter(fn($value) => !is_null($value) && $value !== ''),
+            'occupations' => $occupations->filter(fn($value) => !is_null($value) && $value !== ''),
+            'organizations' => $organizations->filter(fn($value) => !is_null($value) && $value !== ''),
         ]);
     }
 

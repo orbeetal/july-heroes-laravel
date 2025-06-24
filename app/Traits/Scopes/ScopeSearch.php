@@ -4,21 +4,22 @@ namespace App\Traits\Scopes;
 
 trait ScopeSearch
 {
-    public function getSearchAbleFields()
+    public function scopeSearch($query, $search): void
     {
-        return defined(static::class.'::SEARCH_ABLE_FIELDS')
-            ? static::SEARCH_ABLE_FIELDS
-            : [];
-    }
+        if (is_null($search) || $search === '') {
+            return;
+        }
 
-    public function scopeSearch($query, $search):void
-    {
-        $query->when($search, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                foreach ($this->getSearchAbleFields() as $field) {
-                    $query->orWhere($field, "like", "%{$search}%");
-                }
-            });
+        $modelClass = get_class($query->getModel());
+
+        $fields = defined("$modelClass::SEARCH_ABLE_FIELDS")
+            ? $modelClass::SEARCH_ABLE_FIELDS
+            : [];
+
+        $query->where(function ($query) use ($fields, $search) {
+            foreach ($fields as $field) {
+                $query->orWhere($field, 'like', '%' . $search . '%');
+            }
         });
     }
 }
