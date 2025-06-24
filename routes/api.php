@@ -72,10 +72,10 @@ Route::prefix('v1')->group(function () {
                         'query' => 'filter item',
                         'type' => 'string',
                         'example' => [
-                            'query' => 'occupation',
+                            'query' => 'occupations',
                             'type' => 'string',
                             'placeholder' => 'Filter by occupation',
-                            'url' => url($formattedUriWithDefault) . '?occupation=teacher',
+                            'url' => url($formattedUriWithDefault) . '?occupations=teacher,student',
                         ],
                     ];
                 }
